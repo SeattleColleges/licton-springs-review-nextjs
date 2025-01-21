@@ -58,7 +58,7 @@ while current_issue_num <= triggered_issue_num:
         'https://api.smartsheet.com/2.0/sheets/1684539885703044/rows',
         headers={'Authorization': f'Bearer {SMART_ACCESS_TOKEN}', 'Content-Type': 'application/json'},
         json={
-            'toTop': True,
+            'toBottom': True,
             'cells': [
                 {
                     'columnId': 1597362735894404,  # "Task Name"
