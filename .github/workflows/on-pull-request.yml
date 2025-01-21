@@ -9,7 +9,7 @@ on:
       - '**/*'
 
 jobs:
-  build-and-test-expo:
+  build-and-test-nextjs:
     runs-on: ubuntu-latest
 
     steps:
