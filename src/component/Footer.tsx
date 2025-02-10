@@ -1,6 +1,7 @@
 import Link from "next/link";
 export default function Footer() {
   return (
+    <footer>
     <nav className="footer">
       <ul>
         <li>
@@ -20,5 +21,6 @@ export default function Footer() {
         </li>
       </ul>
     </nav>
+    </footer>
   );
 }
