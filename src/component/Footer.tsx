@@ -2,8 +2,11 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-    <nav className="footer">
+      <nav className="footer">
       <ul>
+        <li>
+          <img src="/north-seattle-tree-frogs.png" alt="image of NSC Logo" width="160" height="80" />
+        </li>
         <li>
           <Link href="/archive">Archive</Link>
         </li>
@@ -18,6 +21,11 @@ export default function Footer() {
         </li>
         <li>
           <Link href="link">Link</Link>
+        </li>
+        <li>
+          <Link href="https://www.getrave.com/login/seattlecolleges">
+          <img src="/rave.png" alt="image of NSC Logo" width="170" height="40" />
+          </Link>
         </li>
       </ul>
     </nav>
