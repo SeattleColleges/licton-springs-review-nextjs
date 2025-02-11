@@ -1,8 +1,3 @@
-import Post from "@/component/Post";
 export default function Home() {
-  return (
-    <div>
-      <Post/>
-    </div>
-  );
+  return <h1>Hello Post !</h1>;
 }
