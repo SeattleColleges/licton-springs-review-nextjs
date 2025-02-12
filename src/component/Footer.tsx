@@ -2,7 +2,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-      <nav className="footer">
+    <nav className="footer">
       <ul>
         <li>
           <img src="/north-seattle-tree-frogs.png" alt="image of NSC Logo" width="160" height="80" />
