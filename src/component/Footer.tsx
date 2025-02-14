@@ -31,7 +31,7 @@ export default function Footer() {
       </ul>
     </nav>
 
-      <nav className="footer">
+      {/* <nav className="footer">
         <ul>
           <li>
             <Link href="/archive">Archive</Link>
@@ -49,7 +49,7 @@ export default function Footer() {
             <Link href="link">Link</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </footer>
   );
 }
