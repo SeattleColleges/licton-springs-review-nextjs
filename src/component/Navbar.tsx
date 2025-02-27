@@ -4,9 +4,6 @@ export default function Navbar() {
     <nav className="navbar">
       <ul>
         <li>
-          <Link href="/home">Home</Link>
-        </li>
-        <li>
           <Link href="/poetry">Poetry</Link>
         </li>
         <li>
