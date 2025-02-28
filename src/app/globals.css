@@ -92,7 +92,6 @@ body {
   padding: 16px;
  }
 
-
  .navbar ul {
   display: flex;
   justify-content: center;
@@ -131,3 +130,22 @@ body {
   font-weight: 600;
   color: #333;
  }
+
+ /* Social Media Icons */
+ .social-icons {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  font-size: 18px;
+  color: black; 
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: gray; 
+}
