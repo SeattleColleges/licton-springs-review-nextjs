@@ -10,7 +10,7 @@ export default function Footer() {
           <img src="/north-seattle-tree-frogs.png" alt="image of NSC Logo" width="160" height="80" />
         </li>
         <li>
-          <Link href="/archive">Archive</Link>
+          <Link href="/archives">Archives</Link>
         </li>
         <li>
           <Link href="job">Job</Link>

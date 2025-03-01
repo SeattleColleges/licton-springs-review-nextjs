@@ -10,7 +10,7 @@ export default function Navbar() {
           <Link href="/audio">Audio</Link>
         </li>
         <li>
-          <Link href="/arts">Arts</Link>
+          <Link href="/art">Art</Link>
         </li>
         <li>
           <Link href="/fiction">Fiction</Link>
