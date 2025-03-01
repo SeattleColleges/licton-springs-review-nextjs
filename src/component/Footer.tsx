@@ -21,9 +21,8 @@ export default function Footer() {
         <li>
           <Link href="help">Help</Link>
         </li>
-        <li>
-          <Link href="link">Link</Link>
-        </li>
+          
+        
         <li>
           <Link href="https://www.getrave.com/login/seattlecolleges">
           <Image src="/rave.png" alt="image of NSC Logo" width="170" height="40" />
@@ -45,9 +44,6 @@ export default function Footer() {
           </li>
           <li>
             <Link href="help">Help</Link>
-          </li>
-          <li>
-            <Link href="link">Link</Link>
           </li>
         </ul>
       </nav> */}
