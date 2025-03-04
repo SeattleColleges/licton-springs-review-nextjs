@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 //he library encodes/decodes HTML entities eg &#8220; -> "
 import * as he from "he";
+import Image from "next/image";
 
-//structure of data returned from API
+//structure of data returned from API /posts/id
 interface PostAPI {
     "id": number,
     "date": string,
@@ -84,13 +85,18 @@ interface PostAPI {
     }
 }
 
+//defines structure of content needed for an Image
+interface ImageContent {
+    "src": string, "alt": string, "width": number, "height": number
+}
+
 //defines valid structure for post data to be displayed
 interface PostData {
     "title": string,
     "category": string,
-    // "authorType": string,
+    // "authorType": string, //no longer tracking categories of author
     "date": string,
-    "content": string
+    "content": string | ImageContent
 }
 
 export default function Detail() {
@@ -99,152 +105,191 @@ export default function Detail() {
 
     //data should be either the above structure or null, with an initial value of null
     const [data, setData] = useState<PostData | null>(null);
+    //if loading, displays loading message, otherwise displays post
+    const [loading, setLoading] = useState(true);
     
-    //fetches data for the post and sets state
+    //fetches data for the post and sets state, runs on first render
     useEffect(() => {
         //retrieves the post data JSON from the API or null if no/invalid ID
-        function fetchData(): PostAPI | null {
+        async function fetchData(): Promise<PostAPI | null> {
             //get id from query params
             const id = searchParams.get("id");
             
-            let result = null;
+            let result: PostAPI | null = null;
             if (id != null && id !== "") {
                 //fetch post with that id
-                fetch("https://lictonspringsreview.com/wp-json/wp/v2/posts/" + id)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        return null;
-                    }
-                }).then(json => {
-                    result = json;
-                })
+                const response = await fetch(`https://lictonspringsreview.com/wp-json/wp/v2/posts/${id}`);
+                if (response.ok) {
+                    result = await response.json();
+                }
             }
             return result;
         }
 
-        async function cleanData(): Promise<void> {
-            const roughData = await fetchData();
-            if (roughData === null) return;
+        //cleans the json data and extracts content
+        async function cleanData(roughData: PostAPI | null): Promise<void> {
+            if (roughData === null) return; //invalid request returns no data
 
             const cleanedTitle = cleanTitle(roughData.title.rendered);
+            const categories = await cleanCategories(roughData.categories);
+            let postContent: string | ImageContent = "";
+            if (categories.indexOf("Visual Art") != -1) {
+                //video post is not categorized, checking uncleaned title for "VIDEO:" is faster than searching content string
+                //if no alt text is provided, cleaned title is used instead
+                postContent = cleanArtContent(roughData.content.rendered, roughData.title.rendered, cleanedTitle);
+            } else {
+                postContent = cleanTextContent();
+            }
 
             const cleanedData = {
                 title: cleanedTitle,
-                category: await cleanCategories(roughData.categories),
+                category: categories,
                 date: cleanDate(roughData.date),
-                //checking the original content title is faster than searching long content string for video
-                content: cleanImage(roughData.content.rendered, roughData.title.rendered, cleanedTitle)
+                content: postContent
             };
             setData(cleanedData);
         }
 
+        //removes category and decodes html entities
         function cleanTitle(orig: string) {
-            //remove CATEGORY:<br>
-            let cleaned = orig.substring(orig.indexOf("<br/>") + 5).trim();
+            //if <br/> is in the title, remove CATEGORY<br/> from the title and trim, otherwise just trim
+            const startIndex = orig.indexOf("<br/>");
+            let cleaned = startIndex != -1 ? 
+                            orig.substring(startIndex + 5).trim():
+                            orig.trim();
             //replace html entities eg &#8220; and &#8221; (quotes) with appropriate chars
             cleaned = he.decode(cleaned);
             return cleaned;
         }
 
-        //gets string labels for categories (type only, not author / other cats)
+        //gets string label for category (type only, not author / other cats)
         async function cleanCategories(cats: number[]) {
-            //Just collect all the types (there should just be one but I don't know that it's guaranteed...)
             const validCategories = ["Nonfiction", "Fiction", "Poetry", "Visual Art"];
             
             //We no longer care about author type
             // const authors: {[key: string]: string} = {"19": "alumni", "18": "staff", "17": "faculty", "16": "student", "1": "uncategorized"};
             
-            let type = "";
+            //search the categories for type category
             for (let i = 0; i < cats.length; i++) {
                 const cat = cats[i];
-                console.log("Category #" + i)
-                const res = await fetch("https://lictonspringsreview.com/wp-json/wp/v2/categories/" + cat);
+                const res = await fetch(`https://lictonspringsreview.com/wp-json/wp/v2/categories/${cat}`);
                 if (res.ok) {
                     const name = (await res.json()).name;
                     if (validCategories.includes(name)) {
-                        if (type == "") type = name;
-                        else type += ", " + name;
+                        return name;
                     }
                 }
             }
-            if (type === "") {
-                type = "Uncategorized"
-            }
-            return type;
+            //no valid category found
+            return "Uncategorized";
         }
 
+        //extracts just the date from the datetime string from API
         function cleanDate(date: string) {
             return date.substring(0, 10);
         }
 
-        function cleanImage(content: string, origTitle: string, cleanTitle: string) {
-            //for art posts, either it's an image/figure or that one weird video post (not categorized as video btw)
-            //all nonvideo art posts contain img, some contain figure and img
-            //if img, src="" alt="" width="" height="" srcset="" are all next to each other in that order
-            
+        //TODO: handle posts with multiple images
+        function cleanArtContent(content: string, origTitle: string, cleanTitle: string): ImageContent | string {
             if (origTitle.substring(0, 5) === "VIDEO") {
+                //TODO: implement video handling
                 return "video src=...";
             } else { //it's an image
-                //each field is in this literal format: a=\"x\" b=\"y\" ...
-                //to extract, we would need indexOf("\"") + 1, indexOf(nextField) - 2 (exclusive)
-                //then update the starting index to be indexOf(nextField) and continue
-                //the final field, height, would want to go to the end - 2 (exclusive)
+                //all the fields we care about, in this order: src, alt, width, height, excluding srcset and beyond
+                let currStr = content.substring(content.indexOf("src="), content.indexOf("srcset"));
                 
-                //all the fields we care about, in this order: src, alt, width, height
-                const extraction = content.substring(content.indexOf("src="), content.indexOf("srcset"));
-
                 //extract src
-                let startIndex = extraction.indexOf("\"") + 1;
-                let endIndex = extraction.indexOf("alt") - 2;
-                const src = extraction.substring(startIndex, endIndex);
-
-                //extract alt OR use title
-                let currStr = extraction.substring(endIndex);
+                let startIndex = currStr.indexOf("\"") + 1;
+                let endIndex = currStr.indexOf("alt") - 2;
+                const src = currStr.substring(startIndex, endIndex);
+                
+                //extract alt OR use title if missing
+                currStr = currStr.substring(endIndex + 2);
                 startIndex = currStr.indexOf("\"") + 1;
                 endIndex = currStr.indexOf("wid") - 2;
                 let alt = currStr.substring(startIndex, endIndex);
                 if (alt.trim() === "") {
                     alt = "Visual Art: " + cleanTitle;
                 }
-
+                
                 //extract width
-                currStr = currStr.substring(endIndex);
+                currStr = currStr.substring(endIndex + 2);
                 startIndex = currStr.indexOf("\"") + 1;
                 endIndex = currStr.indexOf("hei") - 2;
-                const width = currStr.substring(startIndex, endIndex);
+                const width = parseInt(currStr.substring(startIndex, endIndex));
 
                 //extract height
-                currStr = currStr.substring(endIndex);
+                currStr = currStr.substring(endIndex + 2);
                 startIndex = currStr.indexOf("\"") + 1;
-                const height = currStr.substring(startIndex, currStr.length - 3);
+                const height = parseInt(currStr.substring(startIndex, currStr.length - 2));
                 
-                //done
-                return "<Image src='" + src + "' alt='" + alt + "' width='" + width + "' height='" + height + "'>";
+                return {
+                    "src": src, "alt": alt, "width": width, "height": height
+                }
             }
         }
 
-        cleanData().then(() => console.log("DONE"));
+        //TODO: implement for text posts, eg nonfiction, poetry, and so on
+        function cleanTextContent() {
+            return "Demo text";
+        }
+
+        //runs the whole task
+        async function performFetchAndCleanData() {
+            const json = await fetchData();
+            await cleanData(json);
+            setLoading(false);
+        }
+
+        performFetchAndCleanData();
     }, [searchParams]); //runs once
 
-    //if there is no id, or id is not a positive whole number, or fetch() returns data.status == 404
-    //extract: titlebyauthor, category (type and author type), postdate, content
-    if (data === null) {
+
+    //display loading message if not yet fetched
+    if (loading) {
         return (<>
-            <h1>Post not found</h1>
-            <Link href="/">Back to Home</Link>
+            <h1>Post #{searchParams.get("id")}</h1>
+            <p>Loading. Please wait...</p>
         </>);
     } else {
-        return ( 
-            <article>
-                <h1>{data.title}</h1>
+        //invalid or no id results in null data
+        if (data === null) {
+            return (<>
+                <h1>Post not found</h1>
+                <Link href="/">Back to Home</Link>
+            </>);
+        } else {
+            //defines how to handle different content types
+            //TODO: once video is implemented, handle displaying <video src=....> similar to Image handling
+            let contentElement = <p></p>;
+            //if an image post, display Image
+            if (typeof data.content === "object") {
+                contentElement = <Image src={data.content.src} alt={data.content.alt} width={data.content.width} height={data.content.height}/>;
+            } else {
+                //video or text content is processed into a string currently
+                contentElement = <p>{data.content}</p>;
+            }
 
-                <p>Published in {data.category}</p>
-                <p>Posted on {data.date}</p>
-                <p>{data.content}</p> {/** or an image */}
-                <a href="/art">More Art</a>
-            </article>
-        );
+            //defines how to handle different categories
+            let categoryContent = <p></p>;
+            if (data.category === "Visual Art") {
+                categoryContent = <p>Published in <Link href="/art">Art</Link></p>
+            } else if (data.category === "Uncategorized") {
+                categoryContent = <p>Uncategorized</p>;
+            } else {
+                categoryContent = <p>Published in <Link href={data.category.toLowerCase()}>{data.category}</Link></p>;
+            }
+
+            //display the post
+            return ( 
+                <article>
+                    <h1>{data.title}</h1>
+                    {categoryContent}
+                    <p>Posted on {data.date}</p>
+                    {contentElement}
+                    <Link href="/art">More Art</Link>
+                </article>
+            );
+        }
     }
 }
