@@ -3,7 +3,6 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-//he library encodes/decodes HTML entities eg &#8220; -> "
 import Image from "next/image";
 
 //import library to fetch wp content
@@ -23,7 +22,7 @@ export default function Detail() {
         //runs the whole task
         async function performFetchAndCleanData() {
             const id = searchParams.get("id");
-            setData(await f.fetchAndCleanArtPost(id));
+            setData(await f.fetchAndCleanPost(id));
             setLoading(false);
         }
 
