@@ -68,7 +68,6 @@ export default function Detail() {
                     {categoryContent}
                     <p>Posted on {data.date}</p>
                     {contentElement}
-                    <Link href="/art">More Art</Link>
                 </article>
             );
         }
