@@ -108,7 +108,8 @@ interface ImageContent {
     "src": string,
     "alt": string,
     "width": number,
-    "height": number
+    "height": number,
+    "caption": string
 }
 
 /**
@@ -146,6 +147,7 @@ async function getPostJSON(id: string | null) {
  * @returns cleaned and extracted data object including title, date, category, and content
  */
 async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
+    //TODO: handle posts with featured images
     if (roughData === null) return null; //invalid request returns no data
 
     const cleanedTitle = cleanTitle(roughData.title.rendered);
@@ -229,7 +231,6 @@ function cleanTextContent(orig: string) {
     return "Demo text";
 }
 
-//TODO: handle posts with multiple images
 /**
  * Cleans post content, extracting image (or video if uncategorized video post)
  * @param content long HTML string containing all post content from API response
@@ -271,8 +272,16 @@ function cleanArtContent(content: string, origTitle: string, cleanTitle: string)
         startIndex = currStr.indexOf("\"") + 1;
         const height = parseInt(currStr.substring(startIndex, currStr.length - 2));
         
+        //if there's a caption, extract it, otherwise set it to cleanTitle
+        let caption = cleanTitle;
+        const captionStart = content.indexOf("figcaption");
+        if (captionStart > -1) {
+            currStr = content.substring(captionStart);
+            caption = currStr.substring(currStr.indexOf("\">") + 2, currStr.indexOf("</figc"));
+        }
+
         return {
-            "src": src, "alt": alt, "width": width, "height": height
+            "src": src, "alt": alt, "width": width, "height": height, "caption": caption
         }
     }
 }

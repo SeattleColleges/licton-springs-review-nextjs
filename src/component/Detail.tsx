@@ -47,9 +47,12 @@ export default function Detail() {
             //defines how to handle different content types
             //TODO: once video is implemented, handle displaying <video src=....> similar to Image handling
             let contentElement = <p></p>;
-            //if an image post, display Image
+            //if an image post, display Image with caption
             if (typeof data.content === "object") {
-                contentElement = <Image src={data.content.src} alt={data.content.alt} width={data.content.width} height={data.content.height}/>;
+                contentElement = <figure>
+                                    <Image src={data.content.src} alt={data.content.alt} width={data.content.width} height={data.content.height}/>
+                                    <figcaption>{data.content.caption}</figcaption>
+                                </figure>
             } else if (typeof data.content === "string") {
                 //video or text content is processed into a string currently
                 contentElement = <p>{data.content}</p>;
