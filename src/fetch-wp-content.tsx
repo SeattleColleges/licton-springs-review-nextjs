@@ -120,6 +120,7 @@ export interface PostData {
     "category": string,
     // "authorType": string, //no longer tracking categories of author
     "date": string,
+    "featuredImage": ImageContent | null,
     "content": string | ImageContent
 }
 
@@ -140,11 +141,10 @@ async function getPostJSON(id: string | null) {
     return result;
 }
 
-//cleans the json data and extracts content
 /**
- * Cleans the original JSON content and extracts title, date, category, and content
+ * Cleans the original JSON content and extracts post content
  * @param roughData original JSON response from the API for a single post
- * @returns cleaned and extracted data object including title, date, category, and content
+ * @returns cleaned and extracted PostData object containing post content
  */
 async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
     //TODO: handle posts with featured images
@@ -152,6 +152,9 @@ async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
 
     const cleanedTitle = cleanTitle(roughData.title.rendered);
     const cleanedCategory = await cleanCategories(roughData.categories);
+
+    const cleanedFeaturedImage = await cleanFeaturedImage(roughData.featured_media);
+
     let postContent: string | ImageContent = "";
     if (cleanedCategory === "Art") {
         postContent = cleanArtContent(roughData.content.rendered, roughData.title.rendered, cleanedTitle);
@@ -164,6 +167,7 @@ async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
         title: cleanedTitle,
         category: cleanedCategory,
         date: cleanDate(roughData.date),
+        featuredImage: cleanedFeaturedImage,
         content: postContent
     };
 }
@@ -182,6 +186,29 @@ function cleanTitle(orig: string) {
     //replace html entities eg &#8220; and &#8221; (quotes) with appropriate chars
     cleaned = he.decode(cleaned);
     return cleaned;
+}
+
+/**
+ * Cleans and extracts data for the featured image, if there is one
+ * @param featuredId id of the featured media to process 
+ * @param title title of the post, to be used as alt/caption if missing
+ * @returns 
+ */
+async function cleanFeaturedImage(featuredId: number, title: string): Promise<ImageContent | null> {
+    const res = await fetch(`https://lictonspringsreview.com/wp-json/wp/v2/media/${featuredId}`);
+    if (! res.ok) return null;
+    const json = await res.json();
+    //TODO: alt and caption is not working
+    const alt = json.alt_text === "" ? title : json.alt_text;
+    const caption = json.caption.rendered === "" ? title : json.caption.rendered;
+    const deets = json.media_details.sizes.full;
+    return {
+        "width": deets.width,
+        "height": deets.height,
+        "src": deets.source_url,
+        "alt": alt,
+        "caption": caption
+    };
 }
 
 /**

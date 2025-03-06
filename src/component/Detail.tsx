@@ -46,6 +46,14 @@ export default function Detail() {
         } else {
             //defines how to handle different content types
             //TODO: once video is implemented, handle displaying <video src=....> similar to Image handling
+            let featuredImage = <></>;
+            if (data.featuredImage !== null) {
+                featuredImage = <figure>
+                    <Image src={data.featuredImage.src} alt={data.featuredImage.alt} width={data.featuredImage.width} height={data.featuredImage.height}/>
+                    <figcaption>{data.featuredImage.caption}</figcaption>
+                </figure>
+            }
+
             let contentElement = <p></p>;
             //if an image post, display Image with caption
             if (typeof data.content === "object") {
@@ -70,6 +78,7 @@ export default function Detail() {
                     <h1>{data.title}</h1>
                     {categoryContent}
                     <p>Posted on {data.date}</p>
+                    {featuredImage}
                     {contentElement}
                 </article>
             );
