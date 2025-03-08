@@ -1,3 +1,5 @@
+Globals.css
+
 /* Global Reset */
 * {
   margin: 0;
@@ -12,23 +14,26 @@ body {
 
 /* NavBar */
 .navbar {
-  background-color: #184ca4;
+  background-color: rgba(21, 73, 196, 0.6);
   padding: 16px;
-}
+ }
 
-.navbar ul {
+ .navbar ul {
   display: flex;
   justify-content: center;
   gap: 24px;
   font-size: 1.125rem;
   font-weight: 600;
-  list-style: none;
-  color: white;
-}
+  color: #333;
+ }
 
 .navbar ul li a {
   color: white;
   text-decoration: none;
+}
+
+.navbar ul, .footer ul {
+  list-style: none;
 }
 
 /* Header */
@@ -45,23 +50,20 @@ body {
 }
 
 /* Footer */
-.footer {
-  background-color: #184ca4;
-  padding: 16px;
-}
 
-.footer ul {
+.footer {
+  background-color: rgba(21, 73, 196, 0.6);
+  padding: 16px;
+ }
+
+ .footer ul {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   gap: 24px;
   font-size: 1.125rem;
   font-weight: 600;
-  color: white;
-  list-style: none;
-  padding: 0;
-  width: 100%;
-}
+  color: #333;
+ }
 
 .footer ul li {
   display: flex;
@@ -86,48 +88,162 @@ body {
   height: auto;
 }
 
-/* NavBar */
-.navbar {
-  background-color: rgba(21, 73, 196, 0.6);
-  padding: 16px;
- }
-
-
- .navbar ul {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #333;
- }
-
-
- /* Header */
- .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
- }
-
-
- .header-logo {
+ /* Submit Page */
+.submit-container {
   max-width: 900px;
-  height: auto;
- }
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
- .footer {
-  background-color: rgba(21, 73, 196, 0.6);
-  padding: 16px;
- }
+.submit-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
+.submit-description {
+  font-size: 16px;
+  margin-bottom: 40px;
+}
 
- .footer ul {
+.submit-deadline {
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.submit-form {
   display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  margin-top: 40px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select, textarea {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.submit-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.submit-checkbox input {
+  width: auto;
+  margin-right: 5px;
+}
+
+.submit-button {
+  background-color: rgba(21, 73, 196, 0.6);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: rgba(41, 102, 226, 0.8);
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 10px;
+  width: 100%;
+}
+
+.selection-label {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  gap: 20px; 
+  white-space: nowrap;
+}
+
+.submit-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  gap: 10px; 
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 15px; 
+}
+
+/* File Upload */
+.file-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 24px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #333;
- }
+  border: 2px dashed #ccc;
+  padding: 20px;
+  margin-bottom: 10px; 
+  cursor: pointer;
+  background-color: #f9f9f9;
+  text-align: center;
+  gap: 10px
+}
+
+
+.file-upload-area p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.file-input-hidden {
+  display: block; 
+}
+
+.file-input {
+  display: none;
+}
+
+.questions {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.note {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.note1 {
+  font-style: italic;
+}
+
+.submit-note {
+  margin-top: 10px;
+}
+
+.red-asterisk {
+  color: red;
+}
+
