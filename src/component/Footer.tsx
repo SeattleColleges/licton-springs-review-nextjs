@@ -2,14 +2,13 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-    footer-nguyengiang
     <nav className="footer">
       <ul>
         <li>
           <img src="/north-seattle-tree-frogs.png" alt="image of NSC Logo" width="160" height="80" />
         </li>
         <li>
-          <Link href="/archive">Archive</Link>
+          <Link href="/archives">Archives</Link>
         </li>
         <li>
           <Link href="job">Job</Link>
@@ -23,10 +22,8 @@ export default function Footer() {
         <li>
           <Link href="link">Link</Link>
         </li>
-        
       </ul>
     </nav>
-
     </footer>
   );
 }
