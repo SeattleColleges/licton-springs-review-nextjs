@@ -1,5 +1,6 @@
-
 import Image from "next/image";
+import SocialMediaLinks from './SocialMediaLinks';
+
 export default function Header() {
     return (
         <header className="header">
@@ -9,9 +10,7 @@ export default function Header() {
                 width="595" height="90"
                 className="header-logo"
             />
-            <p className="slogan">
-                Visual and literary art from the students, staff, faculty, and alumni of North Seattle College
-            </p>
+            <SocialMediaLinks />
         </header>
     );
 }

@@ -129,6 +129,25 @@ body {
   color: #333;
  }
 
+ /* Social Media Icons */
+.header-social-links {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.header-social-links a {
+  font-size: 18px;
+  color: black; 
+  transition: color 0.3s ease;
+}
+
+.header-social-links a:hover {
+  color: gray; 
+}
+
 /* Slogan */
 .slogan {
   margin-top: 10px; 
