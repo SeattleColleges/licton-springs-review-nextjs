@@ -21,6 +21,9 @@ export default function Header() {
                     <BsTiktok />
                 </Link>
             </div>
+            <p className="slogan">
+                Visual and literary art from the students, staff, faculty, and alumni of North Seattle College
+            </p>
         </header>
     );
 }

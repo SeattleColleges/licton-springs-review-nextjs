@@ -34,6 +34,7 @@ body {
 /* Header */
 .header {
   display: flex;
+  flex-direction: column; 
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -101,7 +102,6 @@ body {
   color: #333;
  }
 
-
  /* Header */
  .header {
   display: flex;
@@ -109,7 +109,6 @@ body {
   align-items: center;
   padding: 20px;
  }
-
 
  .header-logo {
   max-width: 900px;
@@ -120,7 +119,6 @@ body {
   background-color: rgba(21, 73, 196, 0.6);
   padding: 16px;
  }
-
 
  .footer ul {
   display: flex;
@@ -148,4 +146,12 @@ body {
 
 .social-icons a:hover {
   color: gray; 
+}
+
+/* Slogan */
+.slogan {
+  margin-top: 10px; 
+  font-size: 10pt; 
+  font-style: italic;
+   color: #4a4a4a; 
 }

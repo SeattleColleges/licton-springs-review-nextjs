@@ -4,16 +4,13 @@ export default function Navbar() {
     <nav className="navbar">
       <ul>
         <li>
-          <Link href="/home">Home</Link>
-        </li>
-        <li>
           <Link href="/poetry">Poetry</Link>
         </li>
         <li>
           <Link href="/audio">Audio</Link>
         </li>
         <li>
-          <Link href="/arts">Arts</Link>
+          <Link href="/art">Art</Link>
         </li>
         <li>
           <Link href="/fiction">Fiction</Link>
