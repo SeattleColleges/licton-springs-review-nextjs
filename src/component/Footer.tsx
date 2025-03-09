@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-    footer-nguyengiang
     <nav className="footer">
       <ul>
         <li>
