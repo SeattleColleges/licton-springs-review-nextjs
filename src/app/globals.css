@@ -130,7 +130,7 @@ body {
  }
 
  /* Social Media Icons */
- .social-icons {
+.header-social-links {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -138,13 +138,13 @@ body {
   gap: 12px;
 }
 
-.social-icons a {
+.header-social-links a {
   font-size: 18px;
   color: black; 
   transition: color 0.3s ease;
 }
 
-.social-icons a:hover {
+.header-social-links a:hover {
   color: gray; 
 }
 
