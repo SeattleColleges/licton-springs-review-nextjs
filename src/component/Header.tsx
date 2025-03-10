@@ -1,7 +1,6 @@
-'use client';
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import SocialMediaLinks from './SocialMediaLinks';
 
 export default function Header() {
     const [currentDate, setCurrentDate] = useState<string>("");
@@ -25,12 +24,7 @@ export default function Header() {
                 height="90"
                 className="header-logo"
             />
-            <p className="slogan">
-                Visual and literary art from the students and alumni of North Seattle College
-            </p>
-            <div className="date-container">
-                <p className="current-date">{currentDate}</p>
-            </div>
+            <SocialMediaLinks />
         </header>
     );
 }
