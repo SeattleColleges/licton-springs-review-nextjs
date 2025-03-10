@@ -1,18 +1,24 @@
-
+'use client';
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import SocialMediaLinks from './SocialMediaLinks';
 
 export default function Header() {
     const [currentDate, setCurrentDate] = useState<string>("");
 
     useEffect(() => {
-        const date = new Date();
-        const formattedDate = date.toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-        });
-        setCurrentDate(formattedDate);
+        try {
+            const date = new Date();
+            const formattedDate = date.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+            });
+            setCurrentDate(formattedDate);
+        } catch (error) {
+            console.error("Error formatting date:", error);
+            setCurrentDate("Error"); 
+        }
     }, []);
 
     return (
@@ -24,6 +30,11 @@ export default function Header() {
                 height="90"
                 className="header-logo"
             />
+
+            {/* Date Container */}
+            <div className="date-container" aria-label="Current Date">
+                <p className="current-date">{currentDate}</p>
+            </div>
             <SocialMediaLinks />
         </header>
     );
