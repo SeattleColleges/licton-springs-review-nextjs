@@ -108,6 +108,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  position: relative;
  }
 
  .header-logo {
@@ -129,6 +130,25 @@ body {
   color: #333;
  }
 
+ /* Social Media Icons */
+.header-social-links {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.header-social-links a {
+  font-size: 18px;
+  color: black; 
+  transition: color 0.3s ease;
+}
+
+.header-social-links a:hover {
+  color: gray; 
+}
+
 /* Slogan */
 .slogan {
   margin-top: 10px; 
@@ -136,3 +156,18 @@ body {
   font-style: italic;
    color: #4a4a4a; 
 }
+
+/* Date */
+.date-container {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 14px;
+  color: #333; 
+}
+
+.current-date {
+  margin: 0;
+  font-weight: bold;
+}
+

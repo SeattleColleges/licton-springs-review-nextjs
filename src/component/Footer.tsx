@@ -5,22 +5,16 @@ export default function Footer() {
     <nav className="footer">
       <ul>
         <li>
-          <img src="/north-seattle-tree-frogs.png" alt="image of NSC Logo" width="160" height="80" />
-        </li>
-        <li>
           <Link href="/archives">Archives</Link>
         </li>
         <li>
-          <Link href="job">Job</Link>
+          <Link href="/job">Job</Link>
         </li>
         <li>
-          <Link href="community page">Community Page</Link>
+          <Link href="/community page">Community Page</Link>
         </li>
         <li>
-          <Link href="help">Help</Link>
-        </li>
-        <li>
-          <Link href="link">Link</Link>
+          <Link href="/help">Help</Link>
         </li>
       </ul>
     </nav>
