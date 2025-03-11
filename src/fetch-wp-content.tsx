@@ -104,12 +104,22 @@ interface PostAPI {
 /**
  * Structure and typing of content needed for an Image
  */
-interface ImageContent {
+export interface ImageContent {
     "src": string,
     "alt": string,
     "width": number,
     "height": number,
     "caption": string
+}
+
+/**
+ * Structure and typing of content needed for a video
+ */
+export interface VideoContent {
+    "src": string,
+    "width": number,
+    "height": number,
+    "type": string
 }
 
 /**
@@ -121,7 +131,7 @@ export interface PostData {
     // "authorType": string, //no longer tracking categories of author
     "date": string,
     "featuredImage": ImageContent | null,
-    "content": string | ImageContent
+    "content": string | ImageContent | VideoContent
 }
 
 /**
@@ -147,15 +157,14 @@ async function getPostJSON(id: string | null) {
  * @returns cleaned and extracted PostData object containing post content
  */
 async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
-    //TODO: handle posts with featured images
     if (roughData === null) return null; //invalid request returns no data
 
     const cleanedTitle = cleanTitle(roughData.title.rendered);
     const cleanedCategory = await cleanCategories(roughData.categories);
 
-    const cleanedFeaturedImage = await cleanFeaturedImage(roughData.featured_media);
+    const cleanedFeaturedImage = await cleanFeaturedImage(roughData.featured_media, cleanedTitle);
 
-    let postContent: string | ImageContent = "";
+    let postContent: string | ImageContent | VideoContent = "";
     if (cleanedCategory === "Art") {
         postContent = cleanArtContent(roughData.content.rendered, roughData.title.rendered, cleanedTitle);
     } else {
@@ -178,11 +187,25 @@ async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
  * @returns cleaned up title
  */
 function cleanTitle(orig: string) {
-    //if <br/> is in the title, remove CATEGORY<br/> from the title and trim, otherwise just trim
-    const startIndex = orig.indexOf("<br/>");
-    let cleaned = startIndex != -1 ? 
-                    orig.substring(startIndex + 5).trim():
-                    orig.trim();
+    //if <br/> or <br> is in the title, set start to after CATEGORY<br/>
+    let startIndex = orig.indexOf("<br/>");
+    if (startIndex !== -1) {
+        startIndex += 5;
+    } else {
+        startIndex = orig.indexOf("<br>");
+        if (startIndex !== -1) {
+            startIndex += 4;
+        }
+    }
+
+    //remove CATEGORY<br/> from the title and trim, if not present just trim
+    let cleaned = "";
+    if (startIndex === -1) {
+        cleaned = orig.trim();
+    } else {
+        cleaned = orig.substring(startIndex).trim();
+    }
+    
     //replace html entities eg &#8220; and &#8221; (quotes) with appropriate chars
     cleaned = he.decode(cleaned);
     return cleaned;
@@ -198,7 +221,6 @@ async function cleanFeaturedImage(featuredId: number, title: string): Promise<Im
     const res = await fetch(`https://lictonspringsreview.com/wp-json/wp/v2/media/${featuredId}`);
     if (! res.ok) return null;
     const json = await res.json();
-    //TODO: alt and caption is not working
     const alt = json.alt_text === "" ? title : json.alt_text;
     const caption = json.caption.rendered === "" ? title : json.caption.rendered;
     const deets = json.media_details.sizes.full;
@@ -265,11 +287,29 @@ function cleanTextContent(orig: string) {
  * @param cleanTitle title that has been cleaned
  * @returns data object containing image src, alt, width, height, or returns string if video
  */
-function cleanArtContent(content: string, origTitle: string, cleanTitle: string): ImageContent | string {
+function cleanArtContent(content: string, origTitle: string, cleanTitle: string): ImageContent | VideoContent | string {
     //video post is not categorized as such, check uncleaned title for "VIDEO"
     if (origTitle.substring(0, 5) === "VIDEO") {
-        //TODO: implement video handling
-        return "video src=...";
+        //get only the content we care about: video tag params starting with width
+        let currStr = content.substring(content.indexOf("width=") + 7, content.indexOf("</a"));
+
+        const width = currStr.substring(0, currStr.indexOf('\"'));
+
+        currStr = currStr.substring(currStr.indexOf("height") + 8);
+        const height = currStr.substring(0, currStr.indexOf('\"'));
+
+        currStr = currStr.substring(currStr.indexOf("type=") + 6);
+        const type = currStr.substring(0, currStr.indexOf('\"'));
+
+        currStr = currStr.substring(currStr.indexOf("href=") + 6);
+        const src = currStr.substring(0, currStr.indexOf('\"'));
+
+        return {
+            width: parseInt(width),
+            height: parseInt(height),
+            type: type,
+            src: src
+        }
     } else { //it's an image
         //all the fields we care about, in this order: src, alt, width, height, excluding srcset and beyond
         let currStr = content.substring(content.indexOf("src="), content.indexOf("srcset"));
