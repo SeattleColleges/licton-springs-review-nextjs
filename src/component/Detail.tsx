@@ -44,8 +44,7 @@ export default function Detail() {
                 <Link href="/">Back to Home</Link>
             </>);
         } else {
-            //defines how to handle different content types
-            //TODO: once video is implemented, handle displaying <video src=....> similar to Image handling
+            //displays the featured image, if one exists
             let featuredImage = <></>;
             if (data.featuredImage !== null) {
                 featuredImage = <figure>
@@ -53,14 +52,24 @@ export default function Detail() {
                     <figcaption>{data.featuredImage.caption}</figcaption>
                 </figure>
             }
-
+            
+            //defines how to handle different content types
             let contentElement = <p></p>;
-            //if an image post, display Image with caption
+            //if it's an image or video, handle that
             if (typeof data.content === "object") {
-                contentElement = <figure>
-                                    <Image src={data.content.src} alt={data.content.alt} width={data.content.width} height={data.content.height}/>
-                                    <figcaption>{data.content.caption}</figcaption>
-                                </figure>
+                if ("type" in data.content) {
+                    //it's a video
+                    contentElement= <video width={data.content.width} height={data.content.height} controls>
+                                        <source type={data.content.type} src={data.content.src}/>
+                                        <a href={data.content.src}>{data.content.src}</a>
+                                    </video>
+                } else {
+                    //it's an image
+                    contentElement = <figure>
+                                        <Image src={data.content.src} alt={data.content.alt} width={data.content.width} height={data.content.height} priority/>
+                                        <figcaption>{data.content.caption}</figcaption>
+                                    </figure>
+                }
             } else if (typeof data.content === "string") {
                 //video or text content is processed into a string currently
                 contentElement = <p>{data.content}</p>;
@@ -70,7 +79,7 @@ export default function Detail() {
             const categoryContent = 
                 data.category === "Uncategorized" ? 
                 <p>Uncategorized</p> :
-                <p>Published in <Link href={data.category.toLowerCase()}>{data.category}</Link></p>;
+                <p>Published in <Link href={"../../" + data.category.toLowerCase()}>{data.category}</Link></p>;
 
             //display the post
             return ( 
