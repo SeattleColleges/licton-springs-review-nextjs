@@ -277,7 +277,13 @@ function cleanDate(date: string) {
  */
 function cleanTextContent(orig: string) {
     console.log(orig);
-    return "Demo text";
+    //remove <p>, </p>
+    let cleaned = orig.replaceAll(/<\/?p>/g, "");
+    //remove <br>, <br/>, <br /> etc
+    cleaned = cleaned.replaceAll(/<br *\/?>/g, "")
+    cleaned = cleaned.trim();
+    
+    return he.decode(cleaned);
 }
 
 /**

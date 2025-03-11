@@ -72,7 +72,7 @@ export default function Detail() {
                 }
             } else if (typeof data.content === "string") {
                 //video or text content is processed into a string currently
-                contentElement = <p>{data.content}</p>;
+                contentElement = <pre>{data.content}</pre>;
             }
 
             //defines how to handle different categories
