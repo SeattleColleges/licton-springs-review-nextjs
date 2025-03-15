@@ -126,3 +126,24 @@ html, body {
   font-weight: bold;
 }
 
+/* NSC Logo in Header */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: absolute;
+  left: 10px; 
+}
+
+.logo {
+  height: 40px; 
+  width: auto;
+  max-width: 100px; 
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+

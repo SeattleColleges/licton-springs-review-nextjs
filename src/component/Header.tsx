@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import SocialMediaLinks from './SocialMediaLinks';
+import SchoolLogo from './SchoolLogo'; 
 
 export default function Header() {
     const [currentDate, setCurrentDate] = useState<string>("");
@@ -23,6 +24,8 @@ export default function Header() {
 
     return (
         <header className="header">
+            <SchoolLogo />
+
             <Image
                 src="https://lictonspringsreview.com/wp-content/uploads/2024/02/cropped-LSRLogo_wideweb.png"
                 alt="Licton Springs Review Logo"
@@ -35,6 +38,7 @@ export default function Header() {
             <div className="date-container" aria-label="Current Date">
                 <p className="current-date">{currentDate}</p>
             </div>
+
             <SocialMediaLinks />
         </header>
     );
