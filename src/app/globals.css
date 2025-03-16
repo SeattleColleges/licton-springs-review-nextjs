@@ -171,3 +171,178 @@ body {
   font-weight: bold;
 }
 
+/* Poetry */
+.poetry-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.poetry-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.poetry-post {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  margin-bottom: 30px;
+}
+
+.poetry-post h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.poetry-post p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.poetry-post a {
+  text-decoration: none;
+  color: #0056b3;
+  transition: color 0.3s;
+}
+
+.poetry-post a:hover {
+  color: blue;
+}
+
+/* Fiction */
+
+.fiction-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.fiction-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.fiction-post {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  margin-bottom: 30px;
+}
+
+.fiction-post h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.fiction-post p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.fiction-post a {
+  text-decoration: none;
+  color: #0056b3;
+  transition: color 0.3s;
+}
+
+.fiction-post a:hover {
+  color: blue;
+}
+
+/* Non-Fiction */
+.non-fiction-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.non-fiction-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.non-fiction-post {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  margin-bottom: 30px;
+}
+
+.non-fiction-post h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.non-fiction-post p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.non-fiction-post a {
+  text-decoration: none;
+  color: #0056b3;
+  transition: color 0.3s;
+}
+
+.non-fiction-post a:hover {
+  color: blue;
+}
+
+
+/* Art */
+.art-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.art-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px; 
+}
+
+.art-post p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.art-post a {
+  text-decoration: none;
+  color: #0056b3;
+  transition: color 0.3s;
+}
+
+.art-post a:hover {
+  color: blue;
+}
+
+.art-post img {
+  width: 100vw;  
+  max-width: 100%; 
+  height: auto; 
+  display: block; 
+  margin: 10px auto; 
+  margin-bottom: 50px;
+  border-radius: 5px;  
+  object-fit: contain; 
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+}
+
+
+
+
