@@ -166,6 +166,7 @@ async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
  * @param orig original title from API, to be cleaned
  * @returns cleaned up title
  */
+
 export function cleanTitle(orig: string) {
     //if <br/> or <br> is in the title, set start to after CATEGORY<br/>
     let startIndex = orig.indexOf("<br/>");
@@ -197,6 +198,7 @@ export function cleanTitle(orig: string) {
  * @param title title of the post, to be used as alt/caption if missing
  * @returns 
  */
+
 export async function cleanFeaturedImage(featuredId: number, title: string): Promise<ImageContent | null> {
     const res = await fetch(`https://lictonspringsreview.com/wp-json/wp/v2/media/${featuredId}`);
     if (! res.ok) return null;
@@ -217,7 +219,7 @@ export async function cleanFeaturedImage(featuredId: number, title: string): Pro
  * Retrieves the name of the post category, ignoring other categories such as author type
  * @param cats List of category ids (numbers) to check
  * @returns Name of the category, either Nonfiction, Fiction, Poetry, Art, or Uncategorized
- */
+ */ 
 export async function cleanCategories(cats: number[]) {
     const validCategories = ["Nonfiction", "Fiction", "Poetry", "Visual Art"];
     

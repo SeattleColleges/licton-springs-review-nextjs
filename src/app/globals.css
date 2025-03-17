@@ -10,11 +10,31 @@ body {
   overflow-x: hidden;
 }
 
+html, body {
+  overflow-x: hidden; 
+  width: 100vw; 
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+ position: relative;
+}
+
+.header-logo {
+  max-width: 900px;
+  height: auto;
+}
+
 /* NavBar */
 .navbar {
-  background-color: #184ca4;
+  background-color: rgba(21, 73, 196, 0.6);
   padding: 16px;
-}
+ }
 
 .navbar ul {
   display: flex;
@@ -31,29 +51,15 @@ body {
   text-decoration: none;
 }
 
-/* Header */
-.header {
-  display: flex;
-  flex-direction: column; 
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.header-logo {
-  max-width: 900px;
-  height: auto;
-}
-
 /* Footer */
 .footer {
-  background-color: #184ca4;
+  background-color: rgba(21, 73, 196, 0.6);
   padding: 16px;
 }
 
 .footer ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 24px;
   font-size: 1.125rem;
@@ -69,14 +75,6 @@ body {
   align-items: center;
 }
 
-.footer ul li:first-child {
-  margin-right: auto;
-}
-
-.footer ul li:last-child {
-  margin-left: auto;
-}
-
 .footer ul li a {
   color: white;
   text-decoration: none;
@@ -86,49 +84,6 @@ body {
   max-width: 100%;
   height: auto;
 }
-
-/* NavBar */
-.navbar {
-  background-color: rgba(21, 73, 196, 0.6);
-  padding: 16px;
- }
-
- .navbar ul {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #333;
- }
-
- /* Header */
- .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  position: relative;
- }
-
- .header-logo {
-  max-width: 900px;
-  height: auto;
- }
-
- .footer {
-  background-color: rgba(21, 73, 196, 0.6);
-  padding: 16px;
- }
-
- .footer ul {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #333;
- }
 
  /* Social Media Icons */
 .header-social-links {
