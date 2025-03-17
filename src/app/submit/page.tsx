@@ -2,20 +2,33 @@
 import { useState } from "react";
 import { FaDownload } from "react-icons/fa";
 
+type FormDataType = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    affiliation: string[];
+    submissionType: string[];
+    titles: string;
+    medium: string;
+    performance: string[];
+    permission: boolean;
+    files: File[];
+  };
 
-export default function Submit() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    affiliation: [] as string[],
-    submissionType: [] as string[],
-    titles: "",
-    medium: "",
-    performance: [] as string[],
-    permission: false,
-    files: [] as File[],
-  });
+  export default function Submit() {
+    const [formData, setFormData] = useState<FormDataType>({
+      firstName: "",
+      lastName: "",
+      email: "",
+      affiliation: [],
+      submissionType: [],
+      titles: "",
+      medium: "",
+      performance: [],
+      permission: false,
+      files: [],
+    });
+  
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -27,23 +40,25 @@ export default function Submit() {
       checked = (e.target as HTMLInputElement).checked;
     }
   
-    setFormData((prev) => {
-      const prevValue = Array.isArray(prev) ? (prev) : [];
-  
-      if (type === "checkbox") {
-        if (name === "permission") {
-          return { ...prev, [name]: checked };
+    setFormData((prev: FormDataType) => {
+        const key = name as keyof FormDataType; 
+        const prevValue = Array.isArray(prev[key]) ? (prev[key] as string[]) : [];
+      
+        if (type === "checkbox") {
+          if (key === "permission") {
+            return { ...prev, [key]: checked ?? false }; 
+          }
+          return { 
+            ...prev,
+            [key]: checked
+              ? [...prevValue, value] 
+              : prevValue.filter((item) => item !== value),
+          };
         }
-        return { 
-          ...prev,
-          [name]: checked
-            ? [...prevValue, value]
-            : prevValue.filter((item) => item !== value),
-        };
-      }
-
-      return { ...prev, [name]: value };
-    });
+      
+        return { ...prev, [key]: value };
+      });
+      
   };
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,34 +117,38 @@ export default function Submit() {
         spring.
         </p>
 
-      <form className="submit-form" onSubmit={handleSubmit}>
-        <label>First Name <span className="red-asterisk">*</span></label>
+    <form className="submit-form" onSubmit={handleSubmit} aria-labelledby="form-title">
+    <label htmlFor="firstName">First Name <span className="red-asterisk">*</span></label>
         <input
           type="text"
+          id="firstName"
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
           required
+          aria-required="true"
         />
 
-        <label>Last Name <span className="red-asterisk">*</span>
-        </label>
+    <label htmlFor="lastName">Last Name <span className="red-asterisk">*</span></label> 
         <input
           type="text"
+          id="lastName"
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
           required
+          aria-required="true"
         />
 
-        <label>Email <span className="red-asterisk">*</span>
-        </label>
+    <label htmlFor="email">Email <span className="red-asterisk">*</span></label>
         <input
           type="email"
+          id="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
           required
+          aria-required="true"
         />
 
         {/* Affiliation */}
@@ -158,9 +177,8 @@ export default function Submit() {
             removing your name and any identifying information prior 
             to uploading. </p>
 
-        <div className="selection-container">
-          {["Art", "Audio", "Fiction", "Non-Fiction", "Poetry", "Performance"].map((option) => (
-              <label key={option} className="selection-label">
+        <div className="selection-container">{["Art", "Audio", "Fiction", "Non-Fiction", "Poetry", "Performance"].map((option) => (
+            <label key={option} className="selection-label">
                 <input
                   type="checkbox"
                   name="submissionType"
@@ -175,9 +193,9 @@ export default function Submit() {
         </div>
 
         {/* Title(s) */}
-        <label>Title(s) <span className="red-asterisk">*</span>
-        </label>
+    <label htmlFor="titles">Title(s) <span className="red-asterisk">*</span></label>
         <textarea
+          id="titles"
           name="titles"
           value={formData.titles}
           onChange={handleChange}
@@ -186,8 +204,9 @@ export default function Submit() {
         <p className="note">If submitting multiple pieces, please ensure the title of each piece is clear</p>
 
         {/* Visual Art Medium */}
-        <label>Visual Art Medium</label>
+    <label htmlFor="medium">Visual Art Medium</label>
         <textarea
+          id="medium"
           name="medium"
           value={formData.medium}
           onChange={handleChange}
@@ -231,14 +250,14 @@ export default function Submit() {
         </div>
 
         {/* File Upload */}
-        <label>File Upload <span className="red-asterisk">*</span>
-        </label>
+        <label htmlFor="fileInput">File Upload <span className="red-asterisk">*</span></label>
         <input
           type="file"
           id="fileInput"
           className="file-input"
           onChange={handleFileChange}
           multiple
+          aria-describedby="fileHelp"
         />
 
         <div
@@ -249,7 +268,7 @@ export default function Submit() {
         >
           <FaDownload size={30} />
           <p>Click or drag files to this area for upload.</p>
-          <p>You can upload up to 5 files.</p>
+          <p id="fileHelp">You can upload up to 5 files.</p>
         </div>
 
         {/* Display Uploaded Files */}
@@ -274,4 +293,5 @@ export default function Submit() {
     </div>
   );
 }
+
 
