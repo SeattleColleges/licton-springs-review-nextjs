@@ -12,6 +12,26 @@ body {
   overflow-x: hidden;
 }
 
+html, body {
+  overflow-x: hidden; 
+  width: 100vw; 
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+ position: relative;
+}
+
+.header-logo {
+  max-width: 900px;
+  height: auto;
+}
+
 /* NavBar */
 .navbar {
   background-color: rgba(21, 73, 196, 0.6);
@@ -30,23 +50,6 @@ body {
 .navbar ul li a {
   color: white;
   text-decoration: none;
-}
-
-.navbar ul, .footer ul {
-  list-style: none;
-}
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.header-logo {
-  max-width: 900px;
-  height: auto;
 }
 
 /* Footer */
@@ -68,14 +71,6 @@ body {
 .footer ul li {
   display: flex;
   align-items: center;
-}
-
-.footer ul li:first-child {
-  margin-right: auto;
-}
-
-.footer ul li:last-child {
-  margin-left: auto;
 }
 
 .footer ul li a {
@@ -245,5 +240,46 @@ textarea {
 
 .red-asterisk {
   color: red;
+}
+
+ /* Social Media Icons */
+.header-social-links {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.header-social-links a {
+  font-size: 18px;
+  color: black; 
+  transition: color 0.3s ease;
+}
+
+.header-social-links a:hover {
+  color: gray; 
+}
+
+/* Slogan */
+.slogan {
+  margin-top: 10px; 
+  font-size: 10pt; 
+  font-style: italic;
+   color: #4a4a4a; 
+}
+
+/* Date */
+.date-container {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 14px;
+  color: #333; 
+}
+
+.current-date {
+  margin: 0;
+  font-weight: bold;
 }
 
