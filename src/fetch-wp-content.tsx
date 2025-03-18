@@ -1,30 +1,10 @@
-//     //ok so basically the plan for lists of posts is, for each post:
-//     <article>
-//         <Link href="/post?id={id}">
-//             <h2>{cleanedTitle}</h2>
-//         </Link>
-//         <p>Posted on {cleanedDate}</p>
-//         // For text content, Image would be replaced by <p>excerpt...</p>
-//         <Link href="/post?id={id}">
-//             <Image src="{src}" alt="{alt}" width="{width}" height="{height}"/>
-//         </Link>
-//     </article>
-
-//     which links to /post?id={id} which fetches Detail component and displays single post
-
-// async function fetchPosts(categoryId: number) {
-//     const res = await fetch("http://lictonspringsreview.com/wp-json/wp/v2/posts/categories=" + categoryId)
-//     const data = await res.json();
-//     return data;
-// }
-
 //he library encodes/decodes HTML entities eg &#8220; -> "
 import * as he from "he";
 
 /**
  * Structure and typing for JSON response returned from API /posts/id
  */
-interface PostAPI {
+export interface PostAPI {
     "id": number,
     "date": string,
     "date_gmt": string,
@@ -186,7 +166,8 @@ async function cleanData(roughData: PostAPI | null): Promise<PostData | null> {
  * @param orig original title from API, to be cleaned
  * @returns cleaned up title
  */
-function cleanTitle(orig: string) {
+
+export function cleanTitle(orig: string) {
     //if <br/> or <br> is in the title, set start to after CATEGORY<br/>
     let startIndex = orig.indexOf("<br/>");
     if (startIndex !== -1) {
@@ -217,7 +198,8 @@ function cleanTitle(orig: string) {
  * @param title title of the post, to be used as alt/caption if missing
  * @returns 
  */
-async function cleanFeaturedImage(featuredId: number, title: string): Promise<ImageContent | null> {
+
+export async function cleanFeaturedImage(featuredId: number, title: string): Promise<ImageContent | null> {
     const res = await fetch(`https://lictonspringsreview.com/wp-json/wp/v2/media/${featuredId}`);
     if (! res.ok) return null;
     const json = await res.json();
@@ -237,8 +219,8 @@ async function cleanFeaturedImage(featuredId: number, title: string): Promise<Im
  * Retrieves the name of the post category, ignoring other categories such as author type
  * @param cats List of category ids (numbers) to check
  * @returns Name of the category, either Nonfiction, Fiction, Poetry, Art, or Uncategorized
- */
-async function cleanCategories(cats: number[]) {
+ */ 
+export async function cleanCategories(cats: number[]) {
     const validCategories = ["Nonfiction", "Fiction", "Poetry", "Visual Art"];
     
     //There are other categories, we want to ignore these as we no longer care about author type
@@ -265,18 +247,16 @@ async function cleanCategories(cats: number[]) {
  * @param date the datetime string to process
  * @returns a date in the format: YYYY-MM-DD
  */
-function cleanDate(date: string) {
+export function cleanDate(date: string) {
     return date.substring(0, 10);
 }
 
-//TODO: implement for text posts, eg nonfiction, poetry, and so on
 /**
  * Cleans original content string of a text post
  * @param orig Original content string from API JSON response
  * @returns Cleaned text content
  */
-function cleanTextContent(orig: string) {
-    console.log(orig);
+export function cleanTextContent(orig: string) {
     //remove <p>, </p>
     let cleaned = orig.replaceAll(/<\/?p>/g, "");
     //remove <br>, <br/>, <br /> etc
