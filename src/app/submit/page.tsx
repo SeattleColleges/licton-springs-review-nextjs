@@ -158,7 +158,7 @@ type FormDataType = {
           {["Alumni", "Student"].map((option) => (
             <label key={option} className="selection-label">
               <input
-                type="checkbox"
+                type="radio"
                 name="affiliation"
                 value={option}
                 checked={formData.affiliation.includes(option)}
@@ -177,10 +177,10 @@ type FormDataType = {
             removing your name and any identifying information prior 
             to uploading. </p>
 
-        <div className="selection-container">{["Art", "Audio", "Fiction", "Non-Fiction", "Poetry", "Performance"].map((option) => (
+        <div className="selection-container">{["Art", "Audio", "Fiction", "Non-fiction", "Poetry", "Performance"].map((option) => (
             <label key={option} className="selection-label">
                 <input
-                  type="checkbox"
+                  type="radio"
                   name="submissionType"
                   value={option}
                   checked={formData.submissionType.includes(option)}
@@ -219,7 +219,7 @@ type FormDataType = {
           {["Pre-recorded", "Request to Record"].map((option) => (
             <label key={option} className="selection-label">
               <input
-                type="checkbox"
+                type="radio"
                 name="performance"
                 value={option}
                 checked={formData.performance.includes(option)}
@@ -239,7 +239,7 @@ type FormDataType = {
           </p>
           <div className="checkbox-container">
             <input
-              type="checkbox"
+              type="radio"
               name="permission"
               checked={formData.permission}
               onChange={handleChange}
@@ -293,5 +293,6 @@ type FormDataType = {
     </div>
   );
 }
+
 
 
