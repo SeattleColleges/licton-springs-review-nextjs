@@ -71,7 +71,6 @@ export default function Detail() {
                                         <figcaption>{data.content.caption}</figcaption>
                                     </figure>
                 }
-       
             } else if (typeof data.content === "string") {
                 // video or text content is processed into a string currently
                 contentElement = (
@@ -83,7 +82,6 @@ export default function Detail() {
                     />
                 );
             }
-        
             //defines how to handle different categories
             const categoryContent = 
                 data.category === "Uncategorized" ? 
