@@ -11,9 +11,9 @@ export async function PostsByCategory(props: {category: string}) {
                 const featuredImg = post.featuredImage === null ? <></> : <Image src={post.featuredImage.src} alt={post.featuredImage.alt} width={post.featuredImage.width} height={post.featuredImage.height}/>;
                 const excerpt = post.excerpt === null ? <></> : <p>{post.excerpt}</p>;
                 return (
-                    <article key={post.id}>
-                        <Link href={`art/post?id=${post.id}`}><h2>{post.title}</h2></Link>
-                        <p>Posted on {post.date}</p>
+                    <article key={post.id} className={`${props.category.toLowerCase()}-post`}>
+                        <Link href={`/${props.category.toLowerCase()}/post?id=${post.id}`}><h2>{post.title}</h2></Link>
+                        <p><strong>Posted on {post.date}</strong></p>
                         {featuredImg}
                         {excerpt}
                     </article>
