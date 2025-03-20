@@ -24,7 +24,11 @@ export default function Header() {
 
     return (
         <header className="header">
-            <SchoolLogo />
+
+            {/*  NSC Mascot Logo */}
+            <div className="nsc-logo-container">
+                <SchoolLogo />
+            </div>
 
             <Image
                 src="https://lictonspringsreview.com/wp-content/uploads/2024/02/cropped-LSRLogo_wideweb.png"
