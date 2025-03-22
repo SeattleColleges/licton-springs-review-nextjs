@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import styles from './styles/Detail.module.css';
 
 //import library to fetch wp content
 import * as f from "../fetch-wp-content";
@@ -70,11 +71,19 @@ export default function Detail() {
                                         <figcaption>{data.content.caption}</figcaption>
                                     </figure>
                 }
+       
             } else if (typeof data.content === "string") {
-                //video or text content is processed into a string currently
-                contentElement = <pre>{data.content}</pre>;
+                // video or text content is processed into a string currently
+                contentElement = (
+                    <div
+                        className={styles.contentContainer}
+                        dangerouslySetInnerHTML={{
+                            __html: `<p>${data.content.replace(/(\r\n|\n|\r)/g, '</p><p>')}</p>`,
+                        }}
+                    />
+                );
             }
-
+        
             //defines how to handle different categories
             const categoryContent = 
                 data.category === "Uncategorized" ? 
@@ -83,12 +92,14 @@ export default function Detail() {
 
             //display the post
             return ( 
-                <article>
-                    <h1>{data.title}</h1>
+                <article className={styles.detailContainer}>
+                    <h1 className={styles.fictionTitle}>{data.title}</h1>
                     {categoryContent}
-                    <p>Posted on {data.date}</p>
+                    <p className={styles.postDate}>Posted on {data.date}</p>
                     {featuredImage}
-                    {contentElement}
+                    <div className={styles.contentContainer}>
+                        {contentElement}
+                    </div>
                 </article>
             );
         }

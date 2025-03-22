@@ -1,8 +1,10 @@
-export default function FictionPage() {
-    return(
-        <main>
+import { PostsByCategory } from "@/component/PostsByCategory";
+
+export default async function FictionPage() {
+    return (
+        <main className="fiction-container">
             <h1>Fiction</h1>
-            <p>Hello World!</p>
+            <PostsByCategory category="Fiction" />
         </main>
     );
 }

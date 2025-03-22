@@ -38,6 +38,10 @@ export default function Header() {
                 className="header-logo"
             />
 
+            <p className="slogan">
+                Visual and literary art from the students, staff, faculty, and alumni of North Seattle College
+            </p>
+
             {/* Date Container */}
             <div className="date-container" aria-label="Current Date">
                 <p className="current-date">{currentDate}</p>
@@ -47,3 +51,5 @@ export default function Header() {
         </header>
     );
 }
+
+

@@ -1,0 +1,68 @@
+.detailContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+.fictionTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.postDate {
+  color: gray;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.featuredImage {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.contentContainer {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6; 
+}
+
+/* Images inside content */
+.contentContainer figure {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.contentContainer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Text content */
+.contentContainer p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.contentContainer h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.contentContainer a {
+  color: #0070f3;
+  text-decoration: underline;
+}
+
+.contentContainer a:hover {
+  text-decoration: none;
+}
+
+
+

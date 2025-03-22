@@ -1,7 +1,7 @@
-export default function JobsPage() {
+export default function JobPage() {
     return (
       <main>
-        <h1>Jobs</h1>
+        <h1>Job</h1>
         <p>Hello World!</p>
       </main>
     );

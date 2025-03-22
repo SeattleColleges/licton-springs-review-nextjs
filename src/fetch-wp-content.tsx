@@ -219,7 +219,8 @@ export async function cleanFeaturedImage(featuredId: number, title: string): Pro
  * Retrieves the name of the post category, ignoring other categories such as author type
  * @param cats List of category ids (numbers) to check
  * @returns Name of the category, either Nonfiction, Fiction, Poetry, Art, or Uncategorized
- */ 
+ */
+
 export async function cleanCategories(cats: number[]) {
     const validCategories = ["Nonfiction", "Fiction", "Poetry", "Visual Art"];
     

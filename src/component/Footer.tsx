@@ -11,9 +11,6 @@ export default function Footer() {
           <Link href="/job">Job</Link>
         </li>
         <li>
-          <Link href="/community page">Community Page</Link>
-        </li>
-        <li>
           <Link href="/help">Help</Link>
         </li>
       </ul>

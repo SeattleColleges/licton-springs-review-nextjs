@@ -91,7 +91,7 @@ type FormDataType = {
 
   return (
     <div className="submit-container">
-        <h1 className="submit-title">SUBMIT</h1>
+        <h1 className="submit-title">Submit</h1>
         <p className="submit-description">
         <strong><em>Licton Springs Review</em></strong> welcomes submissions from students and alumni of North Seattle College. 
         All submissions will be considered for publication in our print edition first, before possible 
@@ -293,6 +293,4 @@ type FormDataType = {
     </div>
   );
 }
-
-
 
