@@ -14,6 +14,7 @@ export async function PostsByCategory(props: {category: string}) {
                     <article key={post.id} className={`${props.category.toLowerCase()}-post`}>
                         <Link href={`/${props.category.toLowerCase()}/post?id=${post.id}`}><h2>{post.title}</h2></Link>
                         <p><strong>Posted on {post.date}</strong></p>
+
                         {featuredImg}
                         {excerpt}
                     </article>

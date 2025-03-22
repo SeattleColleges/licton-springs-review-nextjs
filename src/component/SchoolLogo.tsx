@@ -12,7 +12,6 @@ const links = [
 
 const SchoolLogo = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="relative">
       {/* Logo */}
