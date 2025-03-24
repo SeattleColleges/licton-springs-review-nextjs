@@ -616,3 +616,15 @@ textarea {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+/* Audio */
+.audio-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.audio-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px; 
+}
