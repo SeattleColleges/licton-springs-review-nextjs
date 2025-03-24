@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function JobPage() {
   return (
-    <main className="poetry-container">
+    <main className="job-container">
       <h1 className="heading">JOBS</h1>
       <p className="paragraph">
         The NSC Literary Guild is not currently seeking Editors, but positions sometimes open throughout the year.
