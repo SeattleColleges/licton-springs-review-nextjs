@@ -39,7 +39,7 @@ export default function Header() {
             />
 
             <p className="slogan">
-                Visual and literary art from the students, staff, faculty, and alumni of North Seattle College
+                Visual and literary art from the students, and alumni of North Seattle College
             </p>
 
             {/* Date Container */}
