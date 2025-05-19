@@ -7,7 +7,8 @@ const links = [
   { name: "NSC Event Calendar", url: "https://northseattle.edu/campus-life/campus-events" },
   { name: "NSC Art Gallery", url: "https://artgallery.northseattle.edu/" },
   { name: "The Seattle Collegian", url: "https://seattlecollegian.com/" },
-  { name: "E.P.I.C. • YouTube Channel", url: "https://www.youtube.com/@experientialperformativein9950" },
+  { name: "Association of Writers and Programs (AWP)", url: "https://awpwriter.org/"},
+  { name: "Poets and Writers", url: "https://www.pw.org/literary_magazines"},
 ];
 
 const SchoolLogo = () => {
