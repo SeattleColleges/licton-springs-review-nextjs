@@ -30,11 +30,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
         <Header/>
         <Navbar/>
       
-        <main>{children}</main>
+        <main style={{ flex: 1 }}>{children}</main>
         <Footer/>
       </body>
     </html>
