@@ -8,6 +8,7 @@
 body {
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Castoro', serif;
 }
 
 html, body {
@@ -26,6 +27,7 @@ html, body {
 }
 
 .header-logo {
+  width: 100%;
   max-width: 900px;
   height: auto;
 }
@@ -104,13 +106,6 @@ html, body {
   color: gray; 
 }
 
-/* Slogan */
-.slogan {
-  margin-top: 10px; 
-  font-size: 10pt; 
-  font-style: italic;
-   color: #4a4a4a; 
-}
 
 /* Date */
 .date-container {
@@ -203,7 +198,6 @@ button img {
   max-width: 900px;
   margin: auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 .submit-title {
@@ -376,9 +370,8 @@ textarea {
 /* Slogan */
 .slogan {
   margin-top: 10px; 
-  font-size: 10pt; 
-  font-style: italic;
-   color: #4a4a4a; 
+  font-size: 10pt;
+  color: #4a4a4a; 
 }
 
 /* Date */
@@ -472,7 +465,6 @@ textarea {
 }
 
 /* Fiction */
-
 .fiction-container {
   max-width: 800px;
   margin: 0 auto;
