@@ -8,7 +8,7 @@ export default function Footer() {
           <Link href="/archives">Archives</Link>
         </li>
         <li>
-          <Link href="/job">Job</Link>
+          <Link href="/job">Jobs</Link>
         </li>
         <li>
           <Link href="/help">Help</Link>
