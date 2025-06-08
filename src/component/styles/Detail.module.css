@@ -4,6 +4,10 @@
   padding: 20px;
   background-color: #fff;
   line-height: 1.6;
+  font-family: 'Castoro', serif !important;
+}
+.detailContainer * {
+  font-family: 'Castoro', serif !important;
 }
 
 .fictionTitle {
@@ -30,6 +34,11 @@
   line-height: 1.6; 
 }
 
+.contentContainer, 
+.contentContainer * {
+  font-family: 'Castoro', serif;
+}
+
 /* Images inside content */
 .contentContainer figure {
   margin: 20px 0;
@@ -48,6 +57,7 @@
 .contentContainer p {
   margin-bottom: 20px;
   font-size: 1.1rem;
+  font-family: 'Castoro', serif !important;
 }
 
 .contentContainer h2 {
