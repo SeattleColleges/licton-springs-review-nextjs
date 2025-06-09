@@ -4,14 +4,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from "next/navigation";
 
-import {posts} from '@/app/non-fiction/page';
+import {fictionPosts, nonfictionPosts} from '@/data/posts';
 
 export default function SingleFictionPost() {
     const searchParams = useSearchParams();
     const idx = searchParams.get("id");
     if (idx != null) {
         const i = parseInt(idx);
-        if (isNaN(i) || i < 0 || i >= posts.length) {
+        if (isNaN(i) || i < 0 || i >= nonfictionPosts.length) {
             return (<>
                 <h1>Post not found</h1>
                 <Link href="/">Back to Home</Link>
@@ -20,11 +20,11 @@ export default function SingleFictionPost() {
         //parallel to posts, ordered by last name, accessed by title
         const content: {[key: string] : JSX.Element[]} = {
             "I AM": [
-                "I AM is a declaration of existence “I AM” means to be “I” is a first person address to oneself, Me or Myself. “AM” is the first person singular of Present Tense “Be”. Who I was, is not who I AM, who I AM is forever evolving. I prefer not to spend time reflecting on my childhood or where I was born or raised, my cultural background or my profession. What makes me who I AM is not influenced by past or external experiences, but rather internal growth and reflection. As of now I AM everything and everywhere all at once, and I can do or be anything that aligns with my purpose here on earth. I AM a mother to my son and to all who need me to be, because I was first a mother to myself. I AM a world renowned artist because I AM a renowned work of art, I AM loving and kind to others because I AM loving and kind to myself. I AM understanding of others, because I AM understanding of myself.",
-                "I’ve learned through life experiences, that who we are is always who we will be. The choice to become who I AM was always mine, but the choice to be who I AM was not my own. Who I AM is a natural involuntary path I was destined to follow through divine spirit. If you want to know who someone is do not ask them what they do for a living, or what their childhood was like or where they are from. Their answers will simply tell you what they have experienced in their lives. If you truly want to know who a person is, simply ask them...”what are you passionate about?” If they don’t know what they are passionate about, then they do not yet know who they are.",
-                "The universe doesn’t give us what we want, it gives us what we are. Our passions are our purpose and our purpose is who we are, and as long as we know our purpose, the universe will give us everything we need to live a purposeful life. If any human being has ever experienced me in a way that did not align with my passions then they know who I AM not. I know you’re wondering what I AM passionate about, I could happily share my passions but before I do I ask that you take a moment to reflect upon the ways you have currently experienced me as I AM.",
-                "Reflect upon how your experiences with me have made you feel. Have our interactions inspired you? If so, in what ways? How do you feel in my presence? How do you feel when you’re not in my presence? What do you see when you look at me? What have you learned about yourself through experiences with me? If someone were to ask you who I AM, what would you tell them? If you have yet to experience who I AM, it is without explanation, but only with hope that the universe would be kind enough to allow it. If we have been blessed to share space with one another, and if the way you feel during our experience aligns with my passions——then you already know, who",
-                "I AM."
+                <>{"I AM is a declaration of existence “I AM” means to be “I” is a first person address to oneself, Me or Myself. “AM” is the first person singular of Present Tense “Be”. Who I was, is not who I AM}</>, who I AM is forever evolving. I prefer not to spend time reflecting on my childhood or where I was born or raised, my cultural background or my profession. What makes me who I AM is not influenced by past or external experiences, but rather internal growth and reflection. As of now I AM everything and everywhere all at once, and I can do or be anything that aligns with my purpose here on earth. I AM a mother to my son and to all who need me to be, because I was first a mother to myself. I AM a world renowned artist because I AM a renowned work of art, I AM loving and kind to others because I AM loving and kind to myself. I AM understanding of others, because I AM understanding of myself."}</>,
+                <>{"I’ve learned through life experiences, that who we are is always who we will be. The choice to become who I AM was always mine, but the choice to be who I AM was not my own. Who I AM is a natural involuntary path I was destined to follow through divine spirit. If you want to know who someone is do not ask them what they do for a living, or what their childhood was like or where they are from. Their answers will simply tell you what they have experienced in their lives. If you truly want to know who a person is, simply ask them...”what are you passionate about?” If they don’t know what they are passionate about, then they do not yet know who they are."}</>,
+                <>{"The universe doesn’t give us what we want, it gives us what we are. Our passions are our purpose and our purpose is who we are, and as long as we know our purpose, the universe will give us everything we need to live a purposeful life. If any human being has ever experienced me in a way that did not align with my passions then they know who I AM not. I know you’re wondering what I AM passionate about, I could happily share my passions but before I do I ask that you take a moment to reflect upon the ways you have currently experienced me as I AM."}</>,
+                <>{"Reflect upon how your experiences with me have made you feel. Have our interactions inspired you? If so, in what ways? How do you feel in my presence? How do you feel when you’re not in my presence? What do you see when you look at me? What have you learned about yourself through experiences with me? If someone were to ask you who I AM, what would you tell them? If you have yet to experience who I AM, it is without explanation, but only with hope that the universe would be kind enough to allow it. If we have been blessed to share space with one another, and if the way you feel during our experience aligns with my passions——then you already know, who"}</>,
+                <>{"I AM."}</>
             ],
             "The Ledge": [
                 <>{"Gravel crunched beneath my tires as I pulled into the parking lot, excitement and anxiety wrestling in my chest. What would I face on the other side of the treed entrance to the park? I had only seen the Grand Canyon in pictures, and hadn't done any research before making the impromptu trip. I looked at myself in the rearview mirror and took a deep breath: we're here. My reflection stared back at me, a person I barely recognized anymore."}</>,
@@ -128,7 +128,7 @@ export default function SingleFictionPost() {
         };
 
         //get the correct title, author, excerpt
-        const post = posts[i];
+        const post = fictionPosts[i];
         //turn the content into html
         const paragraphs = content[post.title].map((element, i) => <p key={i}>{element}</p>);
 
