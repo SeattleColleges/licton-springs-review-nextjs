@@ -6,8 +6,8 @@ export default function Help() {
       <h1 style={{ textAlign: "center", marginBottom: "24px" }}>Help</h1>
 
       <p>
-        Welcome to the Licton Springs Review Help Center. Whether you're here to
-        submit your work, join our team, or explore past publications, we’re
+        Welcome to the Licton Springs Review Help Center. Whether you&apos;re here to
+        submit your work, join our team, or explore past publications, we&apos;re
         here to guide you every step of the way.
       </p>
 
