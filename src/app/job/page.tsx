@@ -2,18 +2,21 @@ import React from 'react';
 
 export default function JobPage() {
   return (
-    <main className="job-container">
-      <h1 className="heading">JOBS</h1>
-      <p className="paragraph">
-        The NSC Literary Guild is not currently seeking Editors, but positions sometimes open throughout the year.
-        Editor positions are open to any current NSC students.
-      </p>
-      <p className="paragraph">
-        For more information, please contact Faculty Advisor at{' '}
-        <a href="mailto:jim.jewell@seattlecolleges.edu" className="link">
-          jim.jewell@seattlecolleges.edu
-        </a>.
-      </p>
-    </main>
+    <div className="jobs-layout">
+      <main className="jobs-container">
+        <h1 className="jobs-title">Jobs</h1>
+        <p className="paragraph">
+          The NSC Literary programs is not currently accepting applications for Editor positions.
+          However, opportunities may become available throughout the year. These positions are open
+          to all currently enrolled NSC students.
+        </p>
+        <p className="paragraph">
+          For more information, please contact Faculty Advisor, Tracy Heinlein, at{' '}
+          <a href="mailto:Tracy.Heinlein@seattlecolleges.edu" className="link">
+            Tracy.Heinlein@seattlecolleges.edu
+          </a>.
+        </p>
+      </main>
+    </div>
   );
 }
