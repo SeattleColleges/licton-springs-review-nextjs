@@ -2,35 +2,9 @@ import { PostsByCategory } from "@/component/PostsByCategory";
 import Link from "next/link";
 
 //all the 2025 submission Poetry posts, ordered by last name
-//This doesn't seem like poetry...
-// {
-//         title: "The End The Beginning",
-//         author: "Madline Buergell",
-//         excerpt: <></>
-//     },
-// {contains 2 poems, should I split it up?
-//     title: "The Old Black Dog=Self Remodeling Service",
-//     author: "Student",
-//     excerpt: <>My flesh is pale as my hand shakes,<br/>Must not look back, I will stand tall,<br/>Impulse beckons, the bottle breaks,</>
-// },
-//poem-final contains 3 poems, should I split it up?
-//the three literary contains 3 poems
+//Note: The End / The Beginning by Buergell might be Fiction rather than poetry
+
 export const posts = [
-    {
-        title: "At the Heart of Anger",
-        author: "Student",
-        excerpt: <>Numb.<br/>I can’t shake this numbness.<br/>Where has all the love gone?</>
-    },
-    {
-        title: "Fairey Rotodyne",
-        author: "Student",
-        excerpt: <>Only one was ever built<br/>Painted white and blue<br/>The mighty Fairey Rotodyne</>
-    },
-    {
-        title: "Paris, j’adore",
-        author: "Francesca Aauroraa",
-        excerpt: <>Your cobblestone streets are filled<br/>with the stench of burning cigarettes<br/>Your scenic cafes are awash in ash</>
-    },
     {
         title: "Dying to Live",
         author: "AMAI",
@@ -40,6 +14,11 @@ export const posts = [
         title: "Change: How to",
         author: "River Hartiens Bennu",
         excerpt: <>(a human body experience of living in a society that hates change)<br/><br/>Sometimes life will change in such a drastic way that it takes ages to recover,</>
+    },
+    {
+        title: "The End / The Beginning",
+        author: "Madline Buergell",
+        excerpt: <>It was twelve o’clock on a school day, that’s what I remember. It was twelve o’clock on a school day and she came marching in with her big backpack, weighing her down to the stooped posture of someone’s grandmother, asking for books nobody’s checked out for years.</>
     },
     {
         title: "THEY CALL ME CRAZY",
@@ -70,6 +49,64 @@ export const posts = [
         title: "Flood Watch on Sunday",
         author: "Auguest Purkey",
         excerpt: <>In white monochrome, the water is heaved<br/>down by the season.<br/>I see the opaque</>
+    },
+    {
+        title: "At the Heart of Anger",
+        author: "Student",
+        excerpt: <>Numb.<br/>I can’t shake this numbness.<br/>Where has all the love gone?</>
+    },
+    {
+        title: "Fairey Rotodyne",
+        author: "Student",
+        excerpt: <>Only one was ever built<br/>Painted white and blue<br/>The mighty Fairey Rotodyne</>
+    },
+    //Note: the following 3 are by the same unknown author, file poem-final-e528f14e850d6f3494f5f3b3c70f9bdc
+    {
+        title: "Echoes of the Unsaid",
+        author: "Student",
+        excerpt: <>I remember the mornings,<br/>I remember the light—<br/>How it fell like whispers</>
+    },
+    {
+        title: "Fragmented Horizons",
+        author: "Student",
+        excerpt: <>The sky fractures into shards of twilight,<br/>each piece a question left unanswered,<br/>a dream unraveling into dusk.</>
+    },
+    {
+        title: "Oxymoron’s Embrace",
+        author: "Student",
+        excerpt: <>Beneath the blinding dark,<br/>a light flickers in the void.<br/>It is sharp, soft,</>
+    },
+    //Note: the next 3 are by the same unnamed author. File: The Three Literary.docx
+    {
+        title: "Ode to Writer’s Mania (Freestyle)",
+        author: "Student",
+        excerpt: <>When the words spill,<br/>Out of my mind. On ideas of lucid chaos—<br/>my fingers scramble for a pencil,</>
+    },
+    {
+        title: "The Three Literary",
+        author: "Student",
+        excerpt: <>In literary flow, three meet, three as one,<br/>A writer, a reader, and a memoir gather to unwind;<br/>With every word, with every page, with every pun-</>
+    },
+    {
+        title: "The Vow of Silence",
+        author: "Student",
+        excerpt: <>In the silhouette of silence, my being did believe,<br/>A myth of passion I dared not receive.<br/>With ink and paper, I wrote with my soul,</>
+    },
+    //Note: the next two are by the same unnamed author, file name: The Old Black Dog-Self Love Remodeling Service.docx
+    {
+        title: "The Old Black Dog",
+        author: "Student",
+        excerpt: <>My flesh is pale as my hand shakes,<br/>Must not look back, I will stand tall,<br/>Impulse beckons, the bottle breaks,</>
+    },
+    {
+        title: "Self Love Remodeling Service",
+        author: "Student",
+        excerpt: <>My body is a temple in need of renovation,<br/>For the longest time it sat derelict,<br/>Not expecting to live past twenty-five,</>
+    },
+    {
+        title: "Paris, j’adore",
+        author: "Francesca Aauroraa",
+        excerpt: <>Your cobblestone streets are filled<br/>with the stench of burning cigarettes<br/>Your scenic cafes are awash in ash</>
     },
     {
         title: "Autumn",
