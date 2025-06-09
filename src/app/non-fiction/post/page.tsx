@@ -1,10 +1,15 @@
+"use client";
 import Detail from "@/component/Detail";
-import { Suspense } from "react";
+import SingleNonfictionPost from "@/component/SingleNonfictionPost";
+import { useSearchParams } from "next/navigation";
 
-export default function NonFictionPost() {
-    return (
-        <Suspense fallback={<div>Loading…</div>}>
-            <Detail />
-        </Suspense>
-    );
+export default function FictionPost() {
+    const searchParams = useSearchParams();
+    const isWp = searchParams.get("wp");
+    if (isWp === "false") {
+        return <SingleNonfictionPost />;
+    } else {
+        return <Detail />;
+    }
 }
+

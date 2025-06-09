@@ -8,11 +8,27 @@
 body {
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Castoro', serif;
 }
 
 html, body {
   overflow-x: hidden; 
   width: 100vw; 
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body, #__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 20px auto;
 }
 
 /* Header */
@@ -26,13 +42,14 @@ html, body {
 }
 
 .header-logo {
+  width: 100%;
   max-width: 900px;
   height: auto;
 }
 
 /* NavBar */
 .navbar {
-  background-color: rgba(21, 73, 196, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 16px;
  }
 
@@ -51,9 +68,30 @@ html, body {
   text-decoration: none;
 }
 
+/* Archives */
+
+.archives-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.archives-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.archives-container p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
 /* Footer */
 .footer {
-  background-color: rgba(21, 73, 196, 0.6);
+  background-color: rgb(0, 0, 0, 0.6);
   padding: 16px;
 }
 
@@ -104,13 +142,6 @@ html, body {
   color: gray; 
 }
 
-/* Slogan */
-.slogan {
-  margin-top: 10px; 
-  font-size: 10pt; 
-  font-style: italic;
-   color: #4a4a4a; 
-}
 
 /* Date */
 .date-container {
@@ -203,7 +234,6 @@ button img {
   max-width: 900px;
   margin: auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 .submit-title {
@@ -376,9 +406,8 @@ textarea {
 /* Slogan */
 .slogan {
   margin-top: 10px; 
-  font-size: 10pt; 
-  font-style: italic;
-   color: #4a4a4a; 
+  font-size: 10pt;
+  color: #4a4a4a; 
 }
 
 /* Date */
@@ -472,7 +501,6 @@ textarea {
 }
 
 /* Fiction */
-
 .fiction-container {
   max-width: 800px;
   margin: 0 auto;
@@ -618,12 +646,35 @@ textarea {
 }
 
 /*Styling for Jobs*/
-.jobs-container {
+
+
+.jobs-container{
 max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
+.jobs-container h1{
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.jobs-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.jobs-layout .jobs-container {
+  flex: 1;
+}
+
+.jobs-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
 /* Audio */
 .audio-container {
 
@@ -638,4 +689,3 @@ max-width: 800px;
   font-size: 2rem;
   margin-bottom: 20px; 
 }
-
