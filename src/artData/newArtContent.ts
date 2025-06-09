@@ -86,7 +86,7 @@ const newArtContent = [
   {
     filename:"Vasconcelos_Jada",
     title: "Sound Creatures",
-    artist: "Chelsea Consolacion",
+    artist: "Jada Vasconcelos",
     date: "2025-06-12"  
   },
   {

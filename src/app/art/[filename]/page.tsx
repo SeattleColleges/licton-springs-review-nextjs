@@ -17,7 +17,7 @@ export default function ArtDetailPage({ params }: Props) {
         <p style={{ margin: 0 }}>Posted on {post.date}</p>
       </div>
       <img
-        src={`/arts2025/${post.filename}.jpg`}
+        src={`/Arts2025/${post.filename}.jpg`}
         alt={post.title}
         style={{ width: "auto", maxWidth: "100vw", height: "auto", maxHeight: "100vh", objectFit: "contain", display: "block", margin: "0 auto" }}/>
     </main>
