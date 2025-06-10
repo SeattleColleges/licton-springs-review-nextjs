@@ -6,6 +6,11 @@ import Link from "next/link";
 
 export const posts = [
     {
+        title: "From Dust to Dust",
+        author: "Stella Haberman",
+        excerpt: <>{"There are petroglyphs on the Mojave's rocks. There are pyramids in the Yucatán's forests."}<br/>But I have not stacked any blocks<br/>Or etched my soul into stone.</>
+    },
+    {
         title: "Dying to Live",
         author: "AMAI",
         excerpt: <>It is said that we<br/>Will not know<br/>The time</>
@@ -24,11 +29,6 @@ export const posts = [
         title: "THEY CALL ME CRAZY",
         author: "Michelle Flickinger",
         excerpt: <>Mental Health Battles are Annoying,<br/>Harrowing,<br/>pffffffffff</>
-    },
-    {
-        title: "From Dust to Dust",
-        author: "Stellar Haberman",
-        excerpt: <>{"There are petroglyphs on the Mojave's rocks. There are pyramids in the Yucatán's forests."}<br/>But I have not stacked any blocks<br/>Or etched my soul into stone.</>
     },
     {
         title: "Hasanlu Lovers",
@@ -120,6 +120,7 @@ export default async function PoetryPage() {
     const articles: React.ReactElement[] = posts.map((value, idx) =>
         <article key={idx} className="poetry-post">
             <Link href={`poetry/post?id=${idx}&wp=false`}><h2>{`“${value.title}” by ${value.author}`}</h2></Link>
+            {idx === 0 ? <p>Marcia Barton Award Winner!</p> : <></>}
             <p><strong>Posted on 2025-06-10</strong></p>
             <p>{value.excerpt}</p>  
         </article>
