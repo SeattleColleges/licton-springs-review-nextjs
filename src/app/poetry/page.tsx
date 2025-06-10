@@ -7,7 +7,7 @@ import Link from "next/link";
 export const posts = [
     {
         title: "From Dust to Dust",
-        author: "Stella Haberman",
+        author: "Stellar Haberman",
         excerpt: <>{"There are petroglyphs on the Mojave's rocks. There are pyramids in the Yucatán's forests."}<br/>But I have not stacked any blocks<br/>Or etched my soul into stone.</>
     },
     {
