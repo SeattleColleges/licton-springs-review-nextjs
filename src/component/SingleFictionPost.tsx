@@ -3,14 +3,14 @@ import styles from './styles/Detail.module.css';
 import Link from 'next/link';
 import { useSearchParams } from "next/navigation";
 
-import {posts} from '@/app/fiction/page';
+import {fictionPosts} from '@/data/posts';
 
 export default function SingleFictionPost() {
     const searchParams = useSearchParams();
     const idx = searchParams.get("id");
     if (idx != null) {
         const i = parseInt(idx);
-        if (isNaN(i) || i < 0 || i >= posts.length) {
+        if (isNaN(i) || i < 0 || i >= fictionPosts.length) {
             return (<>
                 <h1>Post not found</h1>
                 <Link href="/">Back to Home</Link>
@@ -442,7 +442,7 @@ export default function SingleFictionPost() {
             ]
         };
 
-        const post = posts[i];
+        const post = fictionPosts[i];
         const paragraphs = content[post.title].map((element, i) => <p key={i}>{element}</p>);
         
         return (

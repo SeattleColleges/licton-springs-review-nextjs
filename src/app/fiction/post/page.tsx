@@ -1,14 +1,9 @@
 "use client";
 import { Suspense } from "react";
-import Detail from "@/component/Detail";
-import SingleFictionPost from "@/component/SingleFictionPost";
-import { useSearchParams } from "next/navigation";
+import FictionContent from "@/component/FictionContent";
 
 export default function FictionPost() {
-  const searchParams = useSearchParams();
-  const isWp = searchParams.get("wp");
-
-  const content = isWp === "false" ? <SingleFictionPost /> : <Detail />;
-
-  return <Suspense fallback={<div>Loading…</div>}>{content}</Suspense>;
+  return <Suspense fallback={<div>Loading…</div>}>
+    <FictionContent/>
+  </Suspense>;
 }
