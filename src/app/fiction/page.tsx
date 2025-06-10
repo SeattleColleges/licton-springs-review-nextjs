@@ -3,13 +3,13 @@ import Link from "next/link";
 
 //all the 2025 submission Fiction posts, ordered by last name
 export const posts = [
-    {   title: "A Matter of Perspective",
-        author: "Madeline Bowman",
-        excerpt: "Sadie Marsh is moving to Hawaii. Everyone is talking about it. At least they are tonight. Her mom’s out for dinner. And you know what they say about when the cat’s away—the mice turn the entire house into a hotbox and get stoned in the living room with two boxes of pizza."},
-
     {   title: "Kindly Breathe",
         author: "Liam Cichy",
         excerpt: "Much higher than her kid’s kite back home in Kentucky USA, and parting still, Ms. Reachers was spiraling away from the ship at the steady pace of half a mile per hour. Spiraling, drifting. floating, not falling. The spots of light through dark trail in large, slow, circular motions, and Ms. Reachers can still smell the euphoric bliss of catnip."},
+
+    {   title: "A Matter of Perspective",
+        author: "Madeline Bowman",
+        excerpt: "Sadie Marsh is moving to Hawaii. Everyone is talking about it. At least they are tonight. Her mom’s out for dinner. And you know what they say about when the cat’s away—the mice turn the entire house into a hotbox and get stoned in the living room with two boxes of pizza."},
 
     {   title: "Cruelty of Spring",
         author: "Audriana Cuellar",
@@ -48,6 +48,7 @@ export default async function FictionPage() {
     const articles: React.ReactElement[] = posts.map((value, idx) =>
         <article key={idx} className="fiction-post">
             <Link href={`fiction/post?id=${idx}&wp=false`}><h2>{`“${value.title}” by ${value.author}`}</h2></Link>
+            {idx === 0 ? <p><strong>Marcia Barton Award Winner!</strong></p> : <></>}
             <p><strong>Posted on 2025-06-10</strong></p>
             <p>{value.excerpt}</p>  
         </article>
