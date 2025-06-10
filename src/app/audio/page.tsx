@@ -5,7 +5,7 @@ export default function Audio() {
     return getCategoryId("Audio")
     .then((id) => {
         const content = id === -1 ? 
-                        <p>There are currently no posts for Audio. Submit your work today!</p> :
+                        <p>There are currently no posts for audio. Submit your work today!</p> :
                         <PostsByCategory category="Audio"/>
         return (
             <main className="audio-container">
