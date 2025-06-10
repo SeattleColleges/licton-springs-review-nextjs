@@ -24,7 +24,6 @@ export default async function ArtPage() {
 
       <div className="art-posts">
         {sortedPosts.map((post) => {
-          const isGarret = post.filename === "Garret_Alannah";
 
           return (
             <div key={post.filename} className="art-post">
