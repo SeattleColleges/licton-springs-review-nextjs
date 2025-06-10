@@ -5,7 +5,7 @@ import Link from "next/link";
 export const posts = [
     {
         title: "I AM",
-        author: "I AM",
+        author: "Amai",
         excerpt: "I AM is a declaration of existence “I AM” means to be “I” is a first person address to oneself, Me or Myself. “AM” is the first person singular of Present Tense “Be”. Who I was, is not who I AM, who I AM is forever evolving. I prefer not to spend time reflecting on my childhood or where I was born or raised, my cultural background or my profession."
     },
     {
