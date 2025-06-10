@@ -41,11 +41,15 @@ export default async function ArtPage() {
                   src={`/arts2025/${post.filename}.jpg`}
                   alt={post.title}
                   width={800}
-                  height={isGarret ? 600 : 300}  
+                  height={300}
                   style={{
-                    objectFit: isGarret ? "contain" : "cover",
+                    objectFit: "contain",
+                    width: "100%",
+                    height: "auto",
+                    maxHeight: "300px"
                   }}
                 />
+
               </div>
             </div>
           );
