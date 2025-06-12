@@ -47,7 +47,7 @@ export default async function NonFictionPage() {
 
     return (
         <main className="non-fiction-container">
-            <h1>Non-Fiction</h1>
+            <h1>Essay</h1>
             {/*2025 submissions*/}
             {articles}
             {/*Previous posts on WordPress*/}
