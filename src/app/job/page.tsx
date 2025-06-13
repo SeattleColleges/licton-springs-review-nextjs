@@ -6,9 +6,9 @@ export default function JobPage() {
       <main className="jobs-container">
         <h1 className="jobs-title">Jobs</h1>
         <p className="paragraph">
-          The NSC Literary programs is not currently accepting applications for Editor positions.
-          However, opportunities may become available throughout the year. These positions are open
-          to all currently enrolled NSC students.
+          Staff of Licton Springs Review considers a variety
+          of paid and volunteer editors, artists, proofreaders, 
+          and selection-committee members all year-round.
         </p>
         <p className="paragraph">
           For more information, please contact Faculty Advisor, Tracy Heinlein, at{' '}
