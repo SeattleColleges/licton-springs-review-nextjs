@@ -16,7 +16,7 @@ export default function Navbar() {
           <Link href="/fiction">Fiction</Link>
         </li>
         <li>
-          <Link href="/non-fiction">Non-Fiction</Link>
+          <Link href="/non-fiction">Essay</Link>
         </li>
         <li>
           <Link href="/submit">Submit</Link>

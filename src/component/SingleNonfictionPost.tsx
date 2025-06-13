@@ -136,7 +136,7 @@ export default function SingleNonfictionPost() {
             <article className={styles.detailContainer}>
                 <h1 className={styles.fictionTitle}>“{post.title}” by {post.author}</h1>
                 {i === 0 ? <p><strong>Marcia Barton Award Winner!</strong></p> : <></>}
-                <p>Published in <Link href="../../non-fiction">Non-Fiction</Link></p>
+                <p>Published in <Link href="../../non-fiction">Essay</Link></p>
                 <p className={styles.postDate}>Posted on 2025-06-10</p>
                 <div className={styles.contentContainer}>
                     {paragraphs}
