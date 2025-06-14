@@ -714,3 +714,77 @@ max-width: 800px;
   font-size: 2rem;
   margin-bottom: 20px; 
 }
+
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  /* NavBar responsive styling */
+  .navbar ul {
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 1rem;
+  }
+  
+  /* Header responsive adjustments */
+  .header {
+    padding: 10px;
+  }
+  
+  /* Fix date container position */
+  .date-container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  /* Fix slogan positioning */
+  .slogan {
+    clear: both;
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 10px auto 0;
+    width: 100%;
+  }
+  
+  /* Adjust social links */
+  .header-social-links {
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-content: center;
+    margin: 10px auto 0;
+  }
+  
+  /* Adjust NSC logo container */
+  .nsc-logo-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+  }
+}
+
+/* Extra small devices (phones, 576px and down) */
+@media screen and (max-width: 576px) {
+  .navbar ul {
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+  
+  /* Smaller font sizes on small screens */
+  .slogan {
+    font-size: 9pt;
+  }
+  
+  /* Further optimize header for iPhone SE */
+  .header-logo {
+    max-width: 90%;
+  }
+}
